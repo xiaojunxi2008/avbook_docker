@@ -4,7 +4,7 @@
 ## 使用说明：
     镜像已经上传到Dockerhub
     docker pull xjx2008/avbook:latest
-    docker run -d -p 8999:8999 --name avbook avbook:xjx2008/avbook:latest (-p 映射端口默认是8999,如果有更改请注意)
+    docker run -d -p 8999:8999 --name avbook xjx2008/avbook:latest (-p 映射端口默认是8999,如果有更改请注意)
     docker run -d -p 8999:8999 -e DB_USERNAME=xxxx -e DB_PWD=xxxx --name avbook xjx2008/avbook:latest(示例更改mysql用户名密码)
     然后你就可以通过 IP:8999 访问啦 (IP是自己的DockerHost主机IP,端口是映射的端口)
     因为我自己有云数据库,所以并没有把数据库整合进Docker,如果有需要的话后面我再把mysql也加入进去
