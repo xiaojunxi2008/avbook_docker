@@ -25,5 +25,6 @@
     nginx 监听 8999转发到8000
 ## 我是个小白,正在学习Docker,也不懂Php,所以Dockerfile写的很杂乱,如果有能优化的地方,希望大佬们指出
 ## 求Star⭐
+![](http://i1.hoopchina.com.cn/hupuapp/bbs/72953558009175/thread_72953558009175_20190805114814_s_31983_o_w_440_h_440_37592.jpg?x-oss-process=image/resize,w_365/format,jpg)
 # License
     The Docker AVBook is open-source software licensed under the MIT license.
