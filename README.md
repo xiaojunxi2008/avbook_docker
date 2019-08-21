@@ -21,7 +21,7 @@
     php 7.2
     Composer 1.9-dev
     nginx 1.14.0
-    php 监听 127.0.0.1:8000
+    php web 监听 127.0.0.1:8000
     nginx 监听 8999转发到8000
 ## 我是个小白,正在学习Docker,也不懂Php,所以Dockerfile写的很杂乱,如果有能优化的地方,希望大佬们指出
 ## 求Star⭐
