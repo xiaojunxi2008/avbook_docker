@@ -2,6 +2,7 @@
 根据[avbook](https://github.com/guyueyingmu/avbook)编写的Dockerfile
 
 ## 使用说明：
+    镜像已经上传到Dockerhub
     docker pull xjx2008/avbook:latest
     docker run -d -p 8999:8999 --name avbook avbook:xjx2008/avbook:latest (-p 映射端口默认是8999,如果有更改请注意)
     docker run -d -p 8999:8999 -e DB_USERNAME=xxxx -e DB_PWD=xxxx --name avbook xjx2008/avbook:latest(示例更改mysql用户名密码)
