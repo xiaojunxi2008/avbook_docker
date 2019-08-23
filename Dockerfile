@@ -15,7 +15,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     ln -fs /usr/share/zoneinfo/Europe/Stockholm /etc/localtime && \
     dpkg-reconfigure -f noninteractive tzdata
 RUN apt-get install -y software-properties-common && \
-    add-apt-repository ppa:ondrej/php && \ 
+    add-apt-repository ppa:ondrej/php && \
     apt-get update -y
 RUN apt-get -y install php7.2 && \
     apt-get install -y php7.2-fpm && \
@@ -52,7 +52,7 @@ RUN apt-get -y install php7.2 && \
     apt-get install -y php7.2-phpdbg && \   
     apt-get install -y php7.2-snmp && \     
     apt-get install -y php7.2-tidy && \     
-    apt-get install -y php7.2-zip 
+    apt-get install -y php7.2-zip
 RUN apt-get install -y git && \
     cd ${FILE_PATH} && \
 #    git config --global http.sslVerify false && \
@@ -71,8 +71,12 @@ RUN apt-get install -y git && \
     cd avbook && \
     composer install && \
     apt-get install -y  nginx
-
-EXPOSE 80
+RUN apt-get install -y mariadb-server
+#   chown -R mysql:mysql /var/lib/mysql /var/run/mysqld && \
+#   service mysql start
+ADD bookdata.sql.bz2 /home/
+RUN apt-get install -y bzip2 && \
+    bunzip2 -k /home/bookdata.sql.bz2
 WORKDIR ${FILE_PATH}avbook/
 CMD [ "php","artisan","serve"]
 ENTRYPOINT ["sh","/bin/docker-entrypoint.sh"]

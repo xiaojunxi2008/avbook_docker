@@ -10,11 +10,11 @@ APP_URL=
 LOG_CHANNEL=stack
 
 DB_CONNECTION=mysql
-DB_HOST=${DB_HOST:-cdb-oi3jwf6t.gz.tencentcdb.com}
-DB_PORT=${DB_PORT:-10010}
+DB_HOST=${DB_HOST:-127.0.0.1}
+DB_PORT=${DB_PORT:-3306}
 DB_DATABASE=${DB_NAME:-avbook}
-DB_USERNAME=${DB_USERNAME:-avbook_gz}
-DB_PASSWORD=${DB_PWD:-Avbook123}
+DB_USERNAME=${DB_USERNAME:-root}
+DB_PASSWORD=${DB_PWD:-avbook111}
 
 
 BROADCAST_DRIVER=log
@@ -98,5 +98,60 @@ http
 EOF
 service nginx reload
 nginx
+service mysql start
+mv /etc/mysql/mariadb.conf.d/50-server.cnf  /etc/mysql/mariadb.conf.d/50-server.cnf.b
+cat > /etc/mysql/mariadb.conf.d/50-server.cnf << EOF
+[server]
+
+[mysqld]
+
+user            = mysql
+pid-file        = /var/run/mysqld/mysqld.pid
+socket          = /var/run/mysqld/mysqld.sock
+port            = 3306
+basedir         = /usr
+datadir         = /var/lib/mysql
+tmpdir          = /tmp
+lc-messages-dir = /usr/share/mysql
+skip-external-locking
+
+bind-address            = 0.0.0.0
+
+key_buffer_size         = 16M
+max_allowed_packet      = 16M
+thread_stack            = 192K
+thread_cache_size       = 8
+
+myisam_recover_options  = BACKUP
+
+query_cache_limit       = 1M
+query_cache_size        = 16M
+
+log_error = /var/log/mysql/error.log
+
+expire_logs_days        = 10
+max_binlog_size   = 100M
+
+character-set-server  = utf8mb4
+collation-server      = utf8mb4_general_ci
+
+[embedded]
+
+[mariadb]
+
+[mariadb-10.1]
+EOF
+mysql -u root  <<EOF
+source /home/bookdata.sql;
+EOF
+#mysqldump -u root avbook >/home/bookdata.sql
+mysql -u root  <<EOF
+USE mysql;
+UPDATE mysql.user SET authentication_string = PASSWORD('${MYSQL_PWD:-avbook111}'), plugin = 'mysql_native_password' WHERE User = 'root' AND Host = 'localhost';
+FLUSH PRIVILEGES;
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '${MYSQL_PWD:-avbook111}' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+EOF
+service mysql restart
 php artisan key:generate
 exec "$@"
