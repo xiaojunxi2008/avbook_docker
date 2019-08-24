@@ -25,7 +25,7 @@
 * `DB_USERNAME` 数据库用户名(默认为root)
 * `DB_PWD` 数据库密码(默认为avbook111)
 * `NGINX_PORT` nginx监听端口(默认为8999)
-### bookdata.sql文件
+### bookdata.sql.bz2文件
     数据库备份文件
 ## 环境
     ubuntu 18.0
