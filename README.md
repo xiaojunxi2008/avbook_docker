@@ -1,6 +1,5 @@
 # Docker AVBook
 根据[avbook](https://github.com/guyueyingmu/avbook)编写的Dockerfile
-~~版本已升级,新的镜像包含数据库!(2019.08.24更新)~~
 ## 使用
     (镜像已经上传到Dockerhub)
     docker pull xjx2008/avbook:latest
@@ -25,8 +24,6 @@
 * `DB_USERNAME` 数据库用户名(默认为root)
 * `DB_PWD` 数据库密码(默认为avbook111)
 * `NGINX_PORT` nginx监听端口(默认为8999)
-### bookdata.sql.bz2文件
-    数据库备份文件
 ## 环境
     ubuntu 18.0
     php 7.2
@@ -35,7 +32,5 @@
     MariaDB 10.1.41
     php web 监听 127.0.0.1:8000
     nginx 监听 8999转发到8000
-### 求Star⭐
-![](http://i1.hoopchina.com.cn/hupuapp/bbs/72953558009175/thread_72953558009175_20190805114814_s_31983_o_w_440_h_440_37592.jpg?x-oss-process=image/resize,w_365/format,jpg)
 # License
     The Docker AVBook is open-source software licensed under the MIT license.
