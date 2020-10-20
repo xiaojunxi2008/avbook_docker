@@ -1,6 +1,6 @@
 # Docker AVBook
 根据[avbook](https://github.com/guyueyingmu/avbook)编写的Dockerfile
-## 版本已升级,新的镜像包含数据库!(2019.08.24更新)
+~~ 版本已升级,新的镜像包含数据库!(2019.08.24更新)~~
 ## 使用
     (镜像已经上传到Dockerhub)
     docker pull xjx2008/avbook:latest
